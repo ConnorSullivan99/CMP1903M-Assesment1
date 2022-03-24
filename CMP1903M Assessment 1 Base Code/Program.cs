@@ -16,17 +16,17 @@ namespace CMP1903M_Assessment_1_Base_Code
 
             //Create 'Input' object
             //Get either manually entered text, or text from a file
-
-
+            var input = new Input();
+            input.inputChoice();
+            
             //Create an 'Analyse' object
             //Pass the text input to the 'analyseText' method
-
-
-            //Receive a list of integers back
-
+            var analyse = new Analyse();
+            analyse.analyseText(input.text);
 
             //Report the results of the analysis
-
+            var report = new Report();
+            report.outputReport(analyse.values);
 
             //TO ADD: Get the frequency of individual letters?
 
