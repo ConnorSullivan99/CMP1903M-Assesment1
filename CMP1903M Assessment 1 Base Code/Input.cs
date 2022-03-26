@@ -8,7 +8,7 @@ namespace CMP1903M_Assessment_1_Base_Code
 {
     public class Input
     {
-        //Handles the text input for Assessment 1
+        //Creating default variables
         public string text = "nothing";
         public string? path;
 
@@ -36,13 +36,17 @@ namespace CMP1903M_Assessment_1_Base_Code
             {
                 text = File.ReadAllText(fileName);
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException e) //Terminate the program if the file is not found
             {
                 Console.WriteLine("The file " + fileName + " was not found.", e.Source);
                 Environment.Exit(1);
             }
         }
 
+        //Method: inputChoice
+        //Arguments: none
+        //Returns: nothing (calls other methods)
+        //Allow the user to choose to input manually or input via file
         public void inputChoice()
         {
             Console.WriteLine("Do you want to input text manually or from a file? (m/f)");
