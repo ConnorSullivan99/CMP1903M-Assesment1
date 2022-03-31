@@ -28,7 +28,25 @@ namespace CMP1903M_Assessment_1_Base_Code
             var report = new Report();
             report.outputReport(analyse.values);
 
-            
+            //Counting the character frequency
+            var characterFreqency = new Dictionary<char, int>();
+            foreach (var ch in input.text)
+            {
+                if (characterFreqency.ContainsKey(ch))
+                {
+                    characterFreqency[ch]++;
+                }
+                else
+                {
+                    characterFreqency[ch] = 1;
+                }
+                    
+            }
+            Console.WriteLine("The frequency of individual characters is as follows: ");
+            foreach (var pair in characterFreqency)
+            {
+                Console.WriteLine("{0} - {1}", pair.Key, pair.Value);
+            }
 
            
         }

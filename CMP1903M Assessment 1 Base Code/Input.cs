@@ -35,10 +35,21 @@ namespace CMP1903M_Assessment_1_Base_Code
             try
             {
                 text = File.ReadAllText(fileName);
+                bool exists = File.Exists(fileName);
+                if (exists == false)
+                {
+                    Console.WriteLine("The file: " + fileName + " does not exist.");
+                    Environment.Exit(1);
+                }
             }
             catch (FileNotFoundException e) //Terminate the program if the file is not found
             {
-                Console.WriteLine("The file " + fileName + " was not found.", e.Source);
+                Console.WriteLine("The file: " + fileName + " was not found.", e.Source);
+                Environment.Exit(1);
+            }
+            catch(PathTooLongException e)
+            {
+                Console.WriteLine("The path name provided is longer than the system defined maximum length.", e.Source);
                 Environment.Exit(1);
             }
         }

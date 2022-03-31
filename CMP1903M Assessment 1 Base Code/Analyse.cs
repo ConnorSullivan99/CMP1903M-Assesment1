@@ -20,6 +20,7 @@ namespace CMP1903M_Assessment_1_Base_Code
             //List of integers to hold the first five measurements
 
             values.Clear();
+            string longWordsFile = "longwords.txt";
 
             //1. Number of sentences
             int sentence = 0;
@@ -27,7 +28,9 @@ namespace CMP1903M_Assessment_1_Base_Code
             for (int i = 0; i < input.Length; i++)
             {
                 char c = input[i];
-                if (c == '.')
+                bool isSentence = ".?!".IndexOf(c) >= 0;
+
+                if (isSentence == true)
                 {
                     sentence++;
                 }
@@ -35,6 +38,21 @@ namespace CMP1903M_Assessment_1_Base_Code
             }
 
             values.Add(sentence);
+
+            //"Long words" functionality
+            File.WriteAllText(longWordsFile, string.Empty); //Instantiate an empty txt file
+            string[] chunkedWords = input.Split(new Char[] {' ', '.', ',', '!', '\n', '\t'}); //Breaks the char input into words at every punctuation mark, space and newline
+            foreach (string word in chunkedWords)
+            {
+                if (word.Trim() != string.Empty)
+                {
+                    if (word.Length > 7) //Checking if the word is greater than 7 characters
+                    {
+                        File.AppendAllText(longWordsFile, "\n");
+                        File.AppendAllText(longWordsFile, word);
+                    }
+                }
+            }
 
             //2. Number of vowels
             int vowels = 0;
